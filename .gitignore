@@ -1,0 +1,7 @@
+
+## -- BLOCK:go --
+build/*
+releases/*
+## -- BLOCK:go --
+## -- BLOCK:license --
+## -- BLOCK:license --
