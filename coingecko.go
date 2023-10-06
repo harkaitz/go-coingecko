@@ -1,7 +1,6 @@
 package coingecko
 
 import (
-	"github.com/harkaitz/go-u27"
 	"errors"
 	"time"
 	"log"
@@ -42,15 +41,15 @@ type CoinGraph struct {
 	TotalVolumes [][2]float64
 }
 
-var Coingecko u.RPC = u.RPC {
+var Coingecko RPC = RPC {
 	URL: "https://api.coingecko.com",
 }
 
 func GetCoinList() (coins []Coin, err error) {
-	if !u.GetFromCache("COINLIST", 3600, &coins) { 
+	if !GetFromCache("COINLIST", 3600, &coins) { 
 		err = Coingecko.SimQuery("/api/v3/coins/list", "GET", &coins)
 		if err != nil { return }
-		u.SaveToCache("COINLIST", coins)
+		SaveToCache("COINLIST", coins)
 	}
 	return
 }
@@ -58,9 +57,9 @@ func GetCoinList() (coins []Coin, err error) {
 func GetCoinData(id CoinID) (data CoinData, err error) {
 	cache := "COINPRICE." + string(id)
 	url := "/api/v3/coins/" + string(id) + "?localization=false"
-	if !u.GetFromCache(cache, 20, &data) {
+	if !GetFromCache(cache, 20, &data) {
 		err = Coingecko.SimQuery(url, "GET", &data)
-		u.SaveToCache(cache, data)
+		SaveToCache(cache, data)
 	}
 	return
 }

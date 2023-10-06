@@ -8,7 +8,6 @@ import (
 	"strconv"
 	"errors"
 	"github.com/harkaitz/go-coingecko"
-	"github.com/harkaitz/go-u27"
 	"github.com/pborman/getopt/v2"
 )
 
@@ -37,7 +36,7 @@ func main() {
 	var graph   coingecko.CoinGraph
 	var price   float64
 	var result  string
-	var date    time.Time = u.Now()
+	var date    time.Time = time.Now()
 	var start   time.Time
 	
 	
