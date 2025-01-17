@@ -22,8 +22,11 @@ A curated command line interface to coingecko.
 
     package coingecko // import "github.com/harkaitz/go-coingecko"
     
-    var Coingecko u.RPC = u.RPC{ ... }
+    var VerboseRPC bool = os.Getenv("VERBOSE_RPC") != ""
     func GetCoinPrice(ticker, currency string) (price float64, err error)
+    func GetFromCache(id string, exp int64, out any) (found bool)
+    func IsError(oB []byte) (err error)
+    func SaveToCache(id string, in any)
     type Coin struct{ ... }
         func GetCoinList() (coins []Coin, err error)
     type CoinData struct{ ... }
@@ -33,10 +36,14 @@ A curated command line interface to coingecko.
         func GetCoinGraph(id CoinID, start, end time.Time, currency string) (graph CoinGraph, err error)
     type CoinID string
         func GetCoinID(ticker string) (id CoinID, err error)
+    type RPC struct{ ... }
+        var Coingecko RPC = RPC{ ... }
+    type RPCRequest struct{ ... }
+    type RPCResponse struct{ ... }
 
 ## Collaborating
 
-For making bug reports, feature requests and donations visit
+For making bug reports, feature requests, support or consulting visit
 one of the following links:
 
 1. [gemini://harkadev.com/oss/](gemini://harkadev.com/oss/)
